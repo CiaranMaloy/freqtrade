@@ -76,6 +76,10 @@ rem backtesting
 freqtrade backtesting --strategy ConnorRSI --timerange=20200401- --export trades
 rem Graph
 freqtrade plot-dataframe --strategy ConnorRSI --timerange=20200401- --indicators2 ConnorsRSI
+
+rem hyperopt
+freqtrade hyperopt --config config.json --hyperopt ConnorRSI_opt --strategy ConnorRSI --print-all --timerange=20200401-
+
 ```
 
 For any other type of installation please refer to [Installation doc](https://www.freqtrade.io/en/latest/installation/).
@@ -83,6 +87,7 @@ For any other type of installation please refer to [Installation doc](https://ww
 ## Basic Usage
 
 ### Bot commands
+
 
 ```
 usage: freqtrade [-h] [-v] [--logfile FILE] [--version] [-c PATH] [-d PATH]
