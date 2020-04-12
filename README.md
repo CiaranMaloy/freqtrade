@@ -69,6 +69,9 @@ git checkout develop
 conda env create -f environment.yml
 rem pip install TA_Lib-0.4.17-cp37-cp37m-win_amd64.whl
 rem pip install -r requirements.txt
+pip install -r requirements-hyperopt.txt
+pip install -r requirements-plot.txt
+
 pip install -e .
 freqtrade
 
