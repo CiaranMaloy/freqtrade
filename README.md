@@ -61,6 +61,19 @@ git checkout develop
 ./setup.sh --install
 ```
 
+Window
+```bash
+git clone git@github.com:freqtrade/freqtrade.git
+cd freqtrade
+git checkout develop
+conda env create -f environment.yml
+rem pip install TA_Lib-0.4.17-cp37-cp37m-win_amd64.whl
+rem pip install -r requirements.txt
+pip install -e .
+freqtrade
+
+```
+
 For any other type of installation please refer to [Installation doc](https://www.freqtrade.io/en/latest/installation/).
 
 ## Basic Usage
