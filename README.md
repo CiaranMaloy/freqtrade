@@ -75,8 +75,8 @@ pip install -r requirements-plot.txt
 pip install -e .
 freqtrade
 
-rem Download historical data mapped in config.json file
-freqtrade download-data --days 200
+rem Download historical data
+freqtrade download-data --days 200 -t 3m
 
 rem backtesting
 freqtrade backtesting --strategy ConnorRSI --timerange=20200401- --export trades
