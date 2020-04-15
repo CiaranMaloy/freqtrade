@@ -23,21 +23,17 @@ class ConnorRSI(IStrategy):
         this strategy is based on the book, 'The Simple Strategy' and can be found in detail here:
         https://www.amazon.com/Simple-Strategy-Powerful-Trading-Futures-ebook/dp/B00E66QPCG/ref=sr_1_1?ie=UTF8&qid=1525202675&sr=8-1&keywords=the+simple+strategy
 
-        Best result:
-
-    86/100:     27 trades. Avg profit   0.38%. Total profit  103.81731543 USDT (  10.37?%). Avg duration  67.9 min. Objective: 1.90737
-
 Best result:
 
-*   15/100:     17 trades. Avg profit   0.33%. Total profit  55.48218535 USDT (   5.54?%). Avg duration  71.6 min. Objective: 1.93118
+   946/1000:     27 trades. Avg profit   0.74%. Total profit  200.66395865 USDT (  20.05?%). Avg duration  59.8 min. Objective: 1.86431
 
 Buy hyperspace params:
-{'connorMin': 5}
+{'connorMin': 0}
 Sell hyperspace params:
-{'connorMax': 88}
+{'connorMax': 72}
 ROI table:
-{0: 0.18528, 15: 0.03847, 37: 0.0272, 62: 0}
-Stoploss: -0.26241
+{0: 0.14882, 17: 0.06481, 31: 0.03017, 38: 0}
+Stoploss: -0.02957
 
     """
 
@@ -47,23 +43,22 @@ Stoploss: -0.26241
     # This attribute will be overridden if the config file contains "minimal_roi"
     minimal_roi = \
         {
-            "0": 0.18528,
-            "15": 0.03847,
-            "37": 0.0272,
-            "62": 0
+            "0": 0.14882,
+            "17": 0.06481,
+            "31": 0.03017,
+            "38": 0
         }
-
 
 
     # Optimal stoploss designed for the strategy
     # This attribute will be overridden if the config file contains "stoploss"
-    stoploss = -0.26241
+    stoploss = -0.02957
 
     # Optimal ticker interval for the strategy
     ticker_interval = '3m'
 
-    connorMin = 5
-    connorMax = 88
+    connorMin = 0
+    connorMax = 72
 
     # ConnorsRSI(3, 2, 100) = [RSI(Close, 3) + RSI(Streak, 2) + PercentRank(100)] / 3
     # ConnorsRSI(3,2,100) = [ RSI(Close,3) + RSI(Streak,2) + PercentRank(percentMove,100) ] / 3
@@ -91,7 +86,7 @@ Stoploss: -0.26241
         dataframe["ROC"] = ta.ROC(dataframe)
 
         # [RSI(Close, 3) + RSI(Streak, 2) + PercentRank(percentMove, 100)] / 3
-        dataframe["ConnorsRSI"] = (dataframe['rsi'] + dataframe["Streak_RSI"] + dataframe["ROC"]) / 3
+        dataframe["ConnorsRSI"] = (dataframe['rsi'] + dataframe["Streak_RSI_n"] + dataframe["ROC"]) / 3
 
         # macd = ta.MACD(dataframe)
         # dataframe['macd'] = macd['macd']
