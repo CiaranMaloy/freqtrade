@@ -148,3 +148,4 @@ def render_template(templatefile: str, arguments: dict = {}) -> str:
     )
     template = env.get_template(templatefile)
     return template.render(**arguments)
+
