@@ -32,6 +32,8 @@ class FindProfitRanges(IStrategy):
     #stoploss = -0.1302
     stoploss = -0.5
 
+
+
     # Optimal ticker interval for the strategy
     ticker_interval = '3m'
 
@@ -39,6 +41,10 @@ class FindProfitRanges(IStrategy):
 
         # {'drawdown': 2.97997, 'percent': 0.67458, 'tick': 1}
         # {'drawdown': 9.80957, 'percent': 0.35411, 'tick': 26}
+
+        # Progressive isn't something that should be considered linear
+        # Sentiment = pow(sentiment, ProgressivePower)
+        progressive_power = 1.5
 
         upperLine = 1.01
         # Percent = 1
@@ -103,7 +109,7 @@ class FindProfitRanges(IStrategy):
                     closedAt = DataTable[max_range_idx][column_close]
                     profit = closedAt / DataTable[x][column_close] -1
                     profit = profit/(max_profit_array[winning_idx]-1)
-                    sentiment_progressive_array[x] = profit
+                    sentiment_progressive_array[x] = pow(profit, progressive_power)
 
             for x in range(winning_idx, max_range_idx):
                 occupied_array[x] = 1
