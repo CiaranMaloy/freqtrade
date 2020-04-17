@@ -9,7 +9,7 @@ import talib.abstract as ta
 import freqtrade.vendor.qtpylib.indicators as qtpylib
 
 
-class FindDaySentiment(IStrategy):
+class FindProfitRanges(IStrategy):
     """
     author@: Gert Wohlgemuth
     idea:
