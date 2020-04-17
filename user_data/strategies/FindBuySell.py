@@ -38,7 +38,7 @@ class FindBuySell(IStrategy):
         tick = 26
         drawdown = 9.8
         import numpy as np
-        a = np.array([])
+        a = np.zeros(dataframe["close"].count())
         for index, row in dataframe.iterrows():
             for x in range(1, 1+tick):
                 buy = False
@@ -54,7 +54,7 @@ class FindBuySell(IStrategy):
                 if (profit):
                     buy = True
                     break
-            a = np.concatenate((a, np.array(buy)), axis=None)
+            a[index] = buy
 
         dataframe['ShouldBuy'] = a
 
