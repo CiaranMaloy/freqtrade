@@ -30,10 +30,12 @@ class FindDaySentiment(IStrategy):
     # Optimal ticker interval for the strategy
     ticker_interval = '3m'
 
+    # params:
+    sentimentBuy = 1.00542
+    sentimentSell = 1.00357
+
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        # {'drawdown': 2.97997, 'percent': 0.67458, 'tick': 1}
-        # {'drawdown': 9.80957, 'percent': 0.35411, 'tick': 26}
 
         upperLine = 1.01
         # Percent = 1
@@ -83,7 +85,7 @@ class FindDaySentiment(IStrategy):
         dataframe.loc[
             (
                 (
-                    (dataframe['sentiment'] > 1.005)
+                    (dataframe['sentiment'] > self.sentimentBuy)
                 )
             ),
             'buy'] = 1
@@ -95,7 +97,7 @@ class FindDaySentiment(IStrategy):
 
         dataframe.loc[
             (
-                (dataframe['sentiment'] < 1)
+                (dataframe['sentiment'] < self.sentimentSell)
             ),
             'sell'] = 1
         return dataframe
